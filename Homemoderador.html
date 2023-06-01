@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones SB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+<body>
+    <header class="head-index">
+
+        <h1>Centro de Investigaciones S.B.</h1>
+
+    </header>
+
+    <main class="main-home">
+
+        <div class="Jovenes-inicio">
+            <h8>Jóvenes Investigadores:</h8>
+        </div>
+
+
+        <table id="tabla-archivo-joven">
+            <thead>
+              <tr>
+                <th>Aspirante</th>
+                <th>Fecha de subida</th>
+                <th>Ver archivos adjuntos</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <div class="Asistente-inicio">
+            <h8>Asistentes:</h8>
+        </div>
+
+        <table id="tabla-archivo-asistente">
+            <thead>
+              <tr>
+                <th>Aspirante</th>
+                <th>Fecha de subida</th>
+                <th>Ver archivos adjuntos</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+    </main>
+
+    <footer class="Footer-home">
+    
+        <div>
+            <strong>Contáctenos:</strong> <br/>
+            Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+            Teléfono: +57 3023614406 
+        </div>
+        
+        <div>
+            <a href="inicioprofesor.html" class="boton-cerrar-sesion">
+                Cerrar Sesión
+            </a>
+        </div>
+            
+    </footer>
+    <script>
+
+    var firebaseConfig = {
+                apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+                authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+                projectId: "servicio-web-base-d6fe6",
+                storageBucket: "servicio-web-base-d6fe6.appspot.com",
+                appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+            };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var currentUser; // Variable global para almacenar los datos del usuario
+    var email="";
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+        // User is signed in
+        var displayName = user.displayName;
+        email = user.email;
+
+        console.log("User is signed in:", displayName, email);
+        // Perform actions with the user's information
+        } else {
+        // User is signed out
+        console.log("User is signed out");
+        // Redirect the user to the login page or perform any other actions
+        }
+    });
+
+    function redirectToPage() {
+        // Get the checkbox element
+        var checkbox = document.getElementById('asistente');
+        var checkbox2 = document.getElementById('jovenes');
+
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+        // Redirect to the desired page
+        window.location.href = 'subirarchivo-asistente.html';
+        }
+
+        if (checkbox2.checked) {
+        // Redirect to the desired page
+        window.location.href = 'subirarchivo-jovenes.html';
+        }
+    }
+
+    var db = firebase.firestore();
+    var storage = firebase.storage();
+
+    // Reference to the "cases" collection in Firestore
+    const casesCollection = db.collection("cases");
+
+    // Reference to the table element in the HTML
+    const tablaJoven = document.getElementById("tabla-archivo-joven").getElementsByTagName("tbody")[0];
+    const tablaAsistente = document.getElementById("tabla-archivo-asistente").getElementsByTagName("tbody")[0];
+
+    // Fetch all cases from Firestore
+    // Fetch all cases from Firestore with estado "En revisión"
+    casesCollection
+        .where("estado", "==", "En revisión")
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+            const caseData = doc.data();
+            const {nombreAspirante, createdDate, estado, files, tipoContrato } = caseData;
+
+            // Determine the table to which the case should be assigned
+            let tableToAssign;
+            if (tipoContrato === "Jovenes") {
+                tableToAssign = tablaJoven;
+            } else if (tipoContrato === "Asistente") {
+                tableToAssign = tablaAsistente;
+            }
+
+            // Create a new row in the table
+            const newRow = tableToAssign.insertRow();
+
+            // Create cells for each field
+            const nameAspirante = newRow.insertCell();
+            const createdDateCell = newRow.insertCell();
+            const downloadCell = newRow.insertCell();
+            const statusCell = newRow.insertCell();
+
+            // Set the values of the cells
+            nameAspirante.textContent = nombreAspirante;
+            createdDateCell.textContent = createdDate;
+            statusCell.textContent = estado;
+
+            // Create a link to the new page for downloading files
+            const link = document.createElement("a");
+            if (tipoContrato === "Jovenes") {
+                link.href = "Revision-archivos-moderador.html?caseId=" + doc.id;
+            } else if (tipoContrato === "Asistente") {
+                link.href = "Revision-archivo-asistente.html?caseId=" + doc.id;
+            }
+            link.textContent = "Download Files";
+
+            // Append the link to the download cell
+            downloadCell.appendChild(link);
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching cases:", error);
+        });
+
+    </script>
+</body>
+</html>

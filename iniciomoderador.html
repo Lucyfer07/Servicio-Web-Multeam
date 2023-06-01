@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones SB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+<body>
+    <header class="headinicio">
+        <form id="user-data" class="correo">
+            <div>
+                <input type ="email" name="email" id="email" placeholder=" Correo " required/>
+            </div>
+            <div>
+                <input type ="password" name="contraseña" id="contraseña" placeholder=" Contraseña " required/>
+            </div>
+            <a href="iniciovmoderador.html">
+                <button type:”submit” class="botoninicio"> Inicio </button>
+            </a>
+        </form>
+        
+        <div class="BotonesInicio2">
+
+            
+           
+            <a href="inicioprofesor.html">
+                <div class="botonmoderador">
+                    <h3>Cambiar a profesor</h3>
+                </div>
+            </a>
+           
+            <div>
+                <a href="Moderador.html">
+                    <div class="botonregistrate5">
+                        <h3>Registrate</h3>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+        
+
+        <h1 class="tlinicio">Centro de Investigaciones S.B.</h1>
+
+        
+        
+    </header>
+
+    <main>
+       <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1109666195919081563/Rectangle_14.png" class="imagen2"/>
+       <p class="texto">
+        En el Centro de Investigaciones S.B. la contratación de asistentes y jóvenes investigadores nunca ha sido tan fácil. Nuestra plataforma para docentes te permite subir tus documentos, los cuales serán revisados por nuestros moderadores; Los moderadores podrán dejar comentarios en los documentos que necesiten ser corregidos, y podrán aprobarlos o rechazarlos según sea el caso. Cuando todos los documentos sean aprobados, podrás seguir adelante con el proceso de contratación.
+       </p>
+
+    </main>
+
+    <footer>
+        <strong>Contáctenos:</strong> <br/>
+        Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+        Teléfono: +57 3023614406 
+    </footer>
+
+    <script>
+
+        
+        function validarFormulario() {
+        const input1 = document.getElementById("email").value;
+        const input2 = document.getElementById("contraseña").value;
+
+        if (input1.trim() === "" || input2.trim() === "") {
+            alert("Debes llenar ambos campos antes de enviar el formulario.");
+            return false; // Prevent form submission
+        } else {
+            // Perform any necessary form processing here
+
+            // Redirect the user to a different page
+            window.location.href = "Homeprofesor.html"; // Replace with your desired destination URL
+            return false; // Prevent form submission (optional, as the redirection will take place)
+        }
+        }
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+            authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+            projectId: "servicio-web-base-d6fe6",
+            storageBucket: "servicio-web-base-d6fe6.appspot.com",
+            appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const loginForm = document.getElementById('user-data');
+
+        loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('contraseña');
+
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        // Use Firebase Authentication API to sign in the user
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+            // Login successful, user is signed in
+            const user = userCredential.user;
+            console.log('User logged in:', user);
+
+            // Check the role of the user
+            firebase.firestore().collection('users').doc(user.uid).get()
+                .then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    const role = userData.role;
+
+                    // Check if the user is a professor
+                    if (role === 'moderador') {
+                    // Redirect the professor user to the professor page
+                    window.location.href = 'Homemoderador.html'; // Replace with the URL of the professor page
+                    } else {
+                    // User is not a professor, display an error message or redirect to a different page
+                    alert('Acceso no autorizado. Solo los profesores pueden ingresar.');
+                    }
+                } else {
+                    // User data not found, display an error message or redirect to a different page
+                    alert('Acceso no autorizado. Solo los profesores pueden ingresar.');
+                }
+                })
+                .catch((error) => {
+                console.error('Error retrieving user data:', error);
+                // Display an error message to the user or redirect to a different page
+                alert('Acceso no autorizado. Error al recuperar los datos del usuario.');
+                });
+            })
+            .catch((error) => {
+            // An error occurred, handle the error
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Login error:', errorCode, errorMessage);
+
+            // Display an error message to the user
+            alert('Inicio de sesión fallido. Por favor, verifica tus credenciales e intenta nuevamente.');
+            });
+        });
+    </script>
+</body>
+</html>

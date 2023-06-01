@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones S.B.</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+<body>
+    <header class="head-noboton">
+        <h1>Centro de Investigaciones S.B.</h1>
+    </header>
+
+    <main class="documentos-enrevision">
+        <h4>Documentos Rechazados</h4>
+        
+        <div class="lista-archivos">
+
+            <div id="declaración_no_inhabilidades" class="cps" style="display: none;">
+                <p>ID del documento: 2</p>
+                <input type="text" class="observaciones" value="Comment for File 2" readonly>
+                
+            </div>
+
+            <div id="documentos-rechazados"></div>
+
+            <a href="Homeprofesor.html">
+                <button type:”submit” class="botonrevision"> inicio </button>
+            </a>
+
+        </div>
+        
+    </main>
+
+    <footer class="Footer-archivos">
+        <div>
+            <strong>Contáctenos:</strong> <br/>
+            Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+            Teléfono: +57 3023614406 
+        </div>
+        
+        <div>
+            <a href="inicioprofesor.html" class="boton-cerrar-sesion">
+                Cerrar Sesión
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        var firebaseConfig = {
+            // Configuración de Firebase
+            apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+            authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+            projectId: "servicio-web-base-d6fe6",
+            storageBucket: "servicio-web-base-d6fe6.appspot.com",
+            appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const caseId = urlParams.get('caseId');
+
+        const db = firebase.firestore();
+        const caseRef = db.collection('cases').doc(caseId);
+
+        function mostrarDocumentosRechazados() {
+            caseRef.get().then((doc) => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    const fileReferences = data.files;
+
+                    if (typeof fileReferences === 'object') {
+                        const documentosRechazadosDiv = document.getElementById('documentos-rechazados');
+
+                        Object.entries(fileReferences).forEach(([fileId, fileRef]) => {
+                            if (fileRef.state === 'Rechazado') {
+                                const documentoDiv = document.createElement('div');
+                                documentoDiv.classList.add('cps');
+                                documentoDiv.id = fileId;
+                                documentoDiv.innerHTML = `
+                                    <input type="text" class="observaciones" value="${fileRef.comment}" readonly>
+                                    <p> ${fileId}</p>
+                                    <button onclick="seleccionarArchivo('${fileId}')">Seleccionar Archivo</button>
+                                `;
+                                documentosRechazadosDiv.appendChild(documentoDiv);
+                            }
+                        });
+                    } else {
+                        console.log('El campo files no es un objeto válido.');
+                    }
+                } else {
+                    console.log('¡No existe dicho documento!');
+                }
+            }).catch((error) => {
+                console.log('Error al obtener el documento:', error);
+            });
+        }
+
+        function seleccionarArchivo(fileId) {
+        const inputFile = document.createElement('input');
+        inputFile.type = 'file';
+        inputFile.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+            const fileRef = firebase.storage().ref().child(`documentos/${fileId}`);
+
+            fileRef.put(file).then((snapshot) => {
+                return snapshot.ref.getDownloadURL().then((url) => {
+                // Actualizar el documento en Firestore con la URL del archivo
+                return caseRef.update({
+                    [`files.${fileId}.state`]: 'Corregido',
+                    [`files.${fileId}.url`]: url,
+                });
+                });
+            }).then(() => {
+                console.log('Archivo subido y URL actualizada en Firestore.');
+
+                // Check if all files have been reuploaded
+                const fileReferences = caseRef.get().then((doc) => doc.data().files);
+                const totalFiles = Object.keys(fileReferences).length;
+                const uploadedFiles = Object.values(fileReferences).filter((fileRef) => fileRef.state === 'Corregido').length;
+
+                if (uploadedFiles === totalFiles) {
+                // All files have been reuploaded, update the estado attribute
+                caseRef.update({
+                    estado: 'En revisión',
+                }).then(() => {
+                    console.log('El estado ha sido actualizado a "En revisión".');
+                }).catch((error) => {
+                    console.log('Error al actualizar el estado:', error);
+                });
+                }
+            }).catch((error) => {
+                console.log('Error al subir el archivo y actualizar la URL:', error);
+            });
+            }
+        };
+        inputFile.click();
+        }
+
+        mostrarDocumentosRechazados();
+    </script>
+</body>
+</html>

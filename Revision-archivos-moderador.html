@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones SB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+</head>
+<body>
+    <header class="head-noboton">
+        <h1>Centro de Investigaciones S.B.</h1>
+    </header>
+
+    <main class="documentos-enrevision">
+
+        <h9 class="h9-archivos">Joven Investigador</h9>
+        <div class="lista-archivos">
+            
+            <form class="check-ap-rech" onsubmit="return validateForm()">
+            <div class="cps" id="Contrato_deprestación_de_servicios">
+                <h9>Contrato de prestación de servicios</h9>
+
+                <fieldset id="Contrato_deprestación_de_servicios">
+
+                <input type="radio" name="case1" value="option1" onclick="updateCheckbox('case1',1)"> Aprobado
+                <input type="radio" name="case1" value="option2" onclick="updateCheckbox('case1',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+    
+                    
+            </div>
+            <hr>
+
+            <div class="cps" id="Concertación_entregable">
+                <h9>Concertación Entregable</h9>      
+                    <fieldset  id="Concertación_entregable">
+                    <input type="radio" name="case2" value="option1" onclick="updateCheckbox('case2',1)"> Aprobado
+                    <input type="radio" name="case2" value="option2" onclick="updateCheckbox('case2',2)"> Rechazado
+                    <input type="text" class="observaciones" placeholder="  Observaciones " >
+                    </fieldset>
+            </div>
+            <hr>
+
+            <div class="cps" id="Fotocopia_cédula">
+                <h9>Fotocopia cédula ciudadanía
+                    </h9>
+                
+                <fieldset id="Fotocopia_cédula">
+                <input type="radio" name="case3" value="option1" onclick="updateCheckbox('case3',1)"> Aprobado
+                <input type="radio" name="case3" value="option2" onclick="updateCheckbox('case3',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Hoja_de_vida">
+                <h9>Hoja de vida
+                    </h9>
+                
+                <fieldset id="Hoja_de_vida">
+
+                    <input type="radio" name="case4" value="option1" onclick="updateCheckbox('case4',1)"> Aprobado
+                    <input type="radio" name="case4" value="option2" onclick="updateCheckbox('case4',2)"> Rechazado
+                    <input type="text" class="observaciones" placeholder="  Observaciones " >
+                    </fieldset>
+
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Libreta_Militar">
+                <h9>Fotocopia de Libreta Militar
+                    </h9>
+                <fieldset id="Libreta_Militar">
+                <input type="radio" name="case5" value="option1" onclick="updateCheckbox('case5',1)"> Aprobado
+                <input type="radio" name="case5" value="option2" onclick="updateCheckbox('case5',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>              
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Tarjeta_profesional">
+                <h9>Fotocopia de Tarjeta profesional
+                    </h9>
+                <fieldset id="Tarjeta_profesional">
+                <input type="radio" name="case6" value="option1" onclick="updateCheckbox('case6',1)"> Aprobado
+                <input type="radio" name="case6" value="option2" onclick="updateCheckbox('case6',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Diploma_de_grado">
+                <h9>Fotocopia de Diploma de grado
+                    </h9>
+                <fieldset id="Diploma_de_grado">
+
+                <input type="radio" name="case7" value="option1" onclick="updateCheckbox('case7',1)"> Aprobado
+                <input type="radio" name="case7" value="option2" onclick="updateCheckbox('case7',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+ 
+            </div>
+            <hr>
+
+
+            <div class="cps" id="acta_de_grado">
+                <h9>Fotocopia de acta de grado UMNG
+                    </h9>
+
+                <fieldset id="acta_de_grado">
+
+                <input type="radio" name="case8" value="option1" onclick="updateCheckbox('case8',1)"> Aprobado
+                <input type="radio" name="case8" value="option2" onclick="updateCheckbox('case8',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Certificaciones_laborales">
+                <h9>Certificaciones laborales
+                    </h9>
+                <fieldset id="Certificaciones_laborales">
+                <input type="radio" name="case9" value="option1" onclick="updateCheckbox('case9',1)"> Aprobado
+                <input type="radio" name="case9" value="option2" onclick="updateCheckbox('case9',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+            </div>
+            <hr>
+
+
+            <div class="cps" id="afiliación_AFP">
+                <h9>Certificado de afiliación AFP
+                    </h9>
+
+                <fieldset id="afiliación_AFP">
+
+                <input type="radio" name="case10" value="option1" onclick="updateCheckbox('case10',1)"> Aprobado
+                <input type="radio" name="case10" value="option2" onclick="updateCheckbox('case10',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+            </div>
+            <hr>
+
+
+            <div class="cps" id="afiliación_EPS">
+                <h9>Certificación de afiliación a EPS
+                    </h9>
+
+                <fieldset id="afiliación_EPS">
+                <input type="radio" name="case11" value="option1" onclick="updateCheckbox('case11',1)"> Aprobado
+                <input type="radio" name="case11" value="option2" onclick="updateCheckbox('case11',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="afiliación_ARL">
+                <h9>Certificación de afiliación ARL
+                    </h9>
+                <fieldset id="afiliación_ARL">
+
+                <input type="radio" name="case12" value="option1" onclick="updateCheckbox('case12',1)"> Aprobado
+                <input type="radio" name="case12" value="option2" onclick="updateCheckbox('case12',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+            <div class="cps" id="antecedentes_contraloría">
+                <h9>Registro único tributario (RUT)
+                </h9>
+                <fieldset id="antecedentes_contraloría">
+                <input type="radio" name="case13" value="option1" onclick="updateCheckbox('case13',1)"> Aprobado
+                <input type="radio" name="case13" value="option2" onclick="updateCheckbox('case13',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Compromiso_confidencialidad">
+                <h9>Compromiso de confidencialidad
+                    </h9>
+                <fieldset id="Compromiso_confidencialidad">
+                <input type="radio" name="case14" value="option1" onclick="updateCheckbox('case14',1)"> Aprobado
+                <input type="radio" name="case14" value="option2" onclick="updateCheckbox('case14',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+            <div class="cps" id="Examen_ocupacional">
+                <h9>Examen ocupacional de ingreso
+                    </h9>
+                <fieldset id="Examen_ocupacional">
+                <input type="radio" name="case15" value="option1" onclick="updateCheckbox('case15',1)"> Aprobado
+                <input type="radio" name="case15" value="option2" onclick="updateCheckbox('case15',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+               
+            </div>
+            <hr>
+
+
+            <div class="cps" id="seguridad_social">
+                <h9>Formato de seguridad social
+                    </h9>
+                <fieldset  id="seguridad_social">
+                <input type="radio" name="case16" value="option1" onclick="updateCheckbox('case16',1)"> Aprobado
+                <input type="radio" name="case16" value="option2" onclick="updateCheckbox('case16',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="antecedentes_procuradoría">
+                <h9>Certificado de antecedentes procuradoría
+                    </h9>
+                <fieldset id="antecedentes_procuradoría">
+                <input type="radio" name="case17" value="option1" onclick="updateCheckbox('case17',1)"> Aprobado
+                <input type="radio" name="case17" value="option2" onclick="updateCheckbox('case17',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="antecedentes_contraloría">
+                <h9>Certificado de antecedentes contraloría</h9>
+                <fieldset id="antecedentes_contraloría">
+                <input type="radio" name="case18" value="option1" onclick="updateCheckbox('case18',1)"> Aprobado
+                <input type="radio" name="case18" value="option2" onclick="updateCheckbox('case18',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="antecedentes_policía_nacional">
+                <h9>Certificado de antecedentes policía nacional
+                    </h9>
+
+                <fieldset id="antecedentes_policía_nacional">
+                <input type="radio" name="case19" value="option1" onclick="updateCheckbox('case19',1)"> Aprobado
+                <input type="radio" name="case19" value="option2" onclick="updateCheckbox('case19',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Formato_de_justificación">
+                <h9>Formato de justificación
+                    </h9>
+                <fieldset id="Formato_de_justificación">
+                <input type="radio" name="case20" value="option1" onclick="updateCheckbox('case20',1)"> Aprobado
+                <input type="radio" name="case20" value="option2" onclick="updateCheckbox('case20',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="declaración_no_inhabilidades">
+                <h9>Certificado de declaración de no inhabilidades,</br> incompatibilidades y conflictos de interés
+                    </h9>
+                <fieldset id="declaración_no_inhabilidades">
+                <input type="radio" name="case21" value="option1" onclick="updateCheckbox('case21',1)"> Aprobado
+                <input type="radio" name="case21" value="option2" onclick="updateCheckbox('case21',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="UNIVEX">
+                <h9>Requisición UNIVEX
+                    </h9>
+                <fieldset id="UNIVEX">
+                <input type="radio" name="case22" value="option1" onclick="updateCheckbox('case22',1)"> Aprobado
+                <input type="radio" name="case22" value="option2" onclick="updateCheckbox('case22',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+               
+            </div>
+            <hr>
+            <div class="cps" id="Constancia_Centro_investigaciones">
+                <h9>Constancia del centro de investigacion
+                    </h9>
+                
+                    <fieldset id="Constancia_Centro_investigaciones">
+                    <input type="radio" name="case23" value="option1" onclick="updateCheckbox('case23',1)"> Aprobado
+                    <input type="radio" name="case23" value="option2" onclick="updateCheckbox('case23',2)"> Rechazado
+                    <input type="text" class="observaciones" placeholder="  Observaciones " >
+                    </fieldset>
+                    
+            </div>
+            <hr>
+
+
+            <div class="cps" id="Presentación_postulante"> 
+                <h9>Prestacion escita del postulante
+                    </h9>
+                    <fieldset  id="Presentación_postulante">
+                    <input type="radio" name="case24" value="option1" onclick="updateCheckbox('case24',1)"> Aprobado
+                    <input type="radio" name="case24" value="option2" onclick="updateCheckbox('case24',2)"> Rechazado
+                    <input type="text" class="observaciones" placeholder="  Observaciones " >
+                    </fieldset>
+                    
+            </div>
+            <hr>
+
+
+            <div class="cps" id="no_vinculación_otro_proyecto">
+                <h9>Constancia de no vinculación a otros proyectos
+                    </h9>
+                <fieldset id="no_vinculación_otro_proyecto">
+                <input type="radio" name="case25" value="option1" onclick="updateCheckbox('case25',1)"> Aprobado
+                <input type="radio" name="case25" value="option2" onclick="updateCheckbox('case25',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+                
+            </div>
+            <hr>
+
+
+            <div class="cps" id="no_participación_previa">
+                <h9>Constancia de no participación previa
+                    </h9>
+                <fieldset id="no_participación_previa">
+                <input type="radio" name="case26" value="option1" onclick="updateCheckbox('case26',1)"> Aprobado
+                <input type="radio" name="case26" value="option2" onclick="updateCheckbox('case26',2)"> Rechazado
+                <input type="text" class="observaciones" placeholder="  Observaciones " >
+                </fieldset>
+            </div>
+            <hr>
+                <button type="submit" class="botoncambios" onclick="validarFormulario(event)">Guardar Cambios</button>
+            </form>
+
+        </form>
+            
+        </div>
+
+    </main>
+    
+    <footer class="Footer-archivos">
+    
+        <div>
+            <strong>Contáctenos:</strong> <br/>
+            Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+            Teléfono: +57 3023614406 
+        </div>
+        
+        <div>
+            <a href="inicioprofesor.html" class="boton-cerrar-sesion">
+                Cerrar Sesión
+            </a>
+        </div>
+            
+    </footer>
+
+    <script>
+      var firebaseConfig = {
+          apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+          authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+          projectId: "servicio-web-base-d6fe6",
+          storageBucket: "servicio-web-base-d6fe6.appspot.com",
+          appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+      };
+  
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+  
+      // Get the case ID from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const caseId = urlParams.get('caseId');
+  
+      // Get the Firestore document for the specified case ID
+      const db = firebase.firestore();
+      const caseRef = db.collection('cases').doc(caseId);
+  
+      // Retrieve the file references from the Firestore document
+      caseRef.get().then((doc) => {
+          if (doc.exists) {
+              const data = doc.data();
+              const fileReferences = data.files;
+  
+              // Iterate over each file reference and insert the file information into the respective div
+              fileReferences.forEach((fileRef) => {
+                  const fileId = fileRef.inputId;
+                  const fileName = fileRef.name;
+  
+                  // Check if a div with the corresponding ID exists
+                  const fileContainer = document.getElementById(fileId);
+                  if (fileContainer) {
+                      // Create a download link for the file
+                      const downloadIcon = document.createElement('img');
+                      downloadIcon.src = 'https://cdn.discordapp.com/attachments/1007076521619492917/1111423676496232448/documentdownload.png';
+                      downloadIcon.alt = 'Download Icon';
+                      downloadIcon.className = 'icon';
+  
+                      // Create a download link element
+                      const downloadLink = document.createElement('a');
+                      downloadLink.href = fileRef.url;
+                      downloadLink.download = fileName;
+  
+                      // Append the download icon to the download link
+                      downloadLink.appendChild(downloadIcon);
+  
+                      // Find the fieldset element within the file container
+                      const fieldsetElement = fileContainer.querySelector('fieldset');
+  
+                      // Insert the download link and icon before the fieldset
+                      fileContainer.insertBefore(downloadLink, fieldsetElement);
+                      console.log(fileId);
+                  } else {
+                      console.log(`Div with ID ${fileId} not found.`);
+                  }
+              });
+          } else {
+              console.log('No such document!');
+          }
+      }).catch((error) => {
+          console.log('Error getting document:', error);
+      });
+  
+      function actualizarAtributosArchivos(caseRef, fileReferences) {
+          const promises = fileReferences.map((fileRef) => {
+              const fileId = fileRef.inputId;
+              const name = fileRef.name;
+              const url = fileRef.url;
+  
+              // Obtain the fieldset element corresponding to the file
+              const fieldsetElement = document.getElementById(fileId);
+              const checkboxes = fieldsetElement.querySelectorAll('input[type="radio"]');
+              const commentsInput = fieldsetElement.querySelector('input[type="text"]');
+  
+              let algunoSeleccionado = false;
+              let fileRejected = false; // Controlar si el archivo actual es rechazado
+  
+              checkboxes.forEach((checkbox) => {
+                  if (checkbox.checked) {
+                      algunoSeleccionado = true;
+                      if (checkbox.value === "option2") {
+                          fileRejected = true; // El archivo actual es rechazado
+                      }
+                  }
+              });
+  
+              if (!algunoSeleccionado) {
+                  return Promise.reject(new Error(`No se seleccionó una opción para el archivo con ID ${fileId}`));
+              }
+  
+              // Obtener los comentarios para el archivo
+              const comments = commentsInput.value;
+  
+              // Prepare the update object
+              const fileUpdate = {
+                  state: algunoSeleccionado ? (fileRejected ? "Rechazado" : "Aprobado") : null,
+                  comment: algunoSeleccionado ? comments : null
+              };
+  
+              // Add the name and url to the update object if they exist
+              if (name) {
+                  fileUpdate.name = name;
+              }
+              if (url) {
+                  fileUpdate.url = url;
+              }
+  
+              // Actualizar los atributos del archivo en Firestore
+              return caseRef.update({
+                  [`files.${fileId}`]: fileUpdate
+              });
+          });
+  
+          return Promise.all(promises);
+      }
+  
+      function updateCheckbox(name, checkboxNumber) {
+          const checkboxes = document.getElementsByName(name);
+  
+          checkboxes.forEach((checkbox, index) => {
+              checkbox.checked = (index + 1 === checkboxNumber);
+          });
+      }
+  
+      function validarFormulario(event) {
+          event.preventDefault(); // Prevenir el envío predeterminado del formulario
+  
+          let todosSeleccionados = true; // Suponer que todas las opciones están seleccionadas
+          let allApproved = true; // Suponer que todos los archivos están aprobados
+  
+          const fieldsets = document.querySelectorAll("fieldset");
+          const fileReferences = []; // Almacenar las referencias de los archivos
+  
+          fieldsets.forEach((fieldset) => {
+              const checkboxes = fieldset.querySelectorAll('input[type="radio"]');
+              const commentsInput = fieldset.querySelector('input[type="text"]');
+  
+              let algunoSeleccionado = false;
+              let fileRejected = false; // Controlar si el archivo actual es rechazado
+  
+              checkboxes.forEach((checkbox) => {
+                  if (checkbox.checked) {
+                      algunoSeleccionado = true;
+                      if (checkbox.value === "option2") {
+                          fileRejected = true; // El archivo actual es rechazado
+                          allApproved = false; // Al menos un archivo es rechazado
+                      }
+                  }
+              });
+  
+              if (!algunoSeleccionado) {
+                  todosSeleccionados = false;
+                  return; // Salir del bucle si algún caso no tiene opción seleccionada
+              }
+  
+              // Almacenar la referencia del archivo
+              const fileId = fieldset.id;
+              const comments = commentsInput.value;
+  
+              fileReferences.push({
+                  inputId: fileId,
+                  name: '', // Agrega el nombre del archivo si está disponible
+                  state: algunoSeleccionado ? (fileRejected ? "Rechazado" : "Aprobado") : null,
+                  comment: algunoSeleccionado ? comments : null
+              });
+          });
+  
+          if (!todosSeleccionados) {
+              alert("Debes seleccionar una opción en cada caso antes de guardar los cambios.");
+          } else {
+              // Actualizar los atributos de los archivos en Firestore
+              actualizarAtributosArchivos(caseRef, fileReferences)
+                  .then(() => {
+                      console.log("Atributos de los archivos actualizados exitosamente!");
+  
+                      // Actualizar el estado general del caso
+                      const caseState = allApproved ? "Aprobado" : "Rechazado";
+  
+                      // Actualizar la fecha de revisión del caso
+                      const currentDate = new Date();
+                      const dateString = currentDate.toLocaleDateString();
+  
+                      return caseRef.update({
+                          estado: caseState,
+                          createDateRevision: dateString
+                      });
+                  })
+                  .then(() => {
+                      console.log("Estado y fecha de revisión del caso actualizados exitosamente!");
+  
+                      // Redirigir al usuario a otra página
+                      window.location.href = "Homemoderador.html"; // Reemplaza con la URL de destino deseada
+                  })
+                  .catch((error) => {
+                      console.log("Error al actualizar los atributos de los archivos o el estado del caso:", error);
+                  });
+          }
+      }
+  </script>    
+      
+            
+</body>
+</html>

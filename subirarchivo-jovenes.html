@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones SB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+</head>
+<body>
+    <header class="head-inicio-iniciop">
+        <a href="nuevocontrato.html">
+            <div class="boton-nuevo-contrato">
+                Nuevo contrato
+            </div>
+        </a>
+
+        <h1>Centro de Investigaciones S.B.</h1>
+
+    </header>
+
+    <main class="Main-nuevo-contrato">
+
+        <div class="cubito-grande">
+
+            <h6>Tipo de contrato</h6>
+
+            <div class="checkbox">
+
+                <form>
+                        <label for="asistentes">
+                            <input type="radio" id="asistentes" onchange="redirectToPage()"> Asistente
+                        </label>
+
+                        <label for="jovenes">
+                            <input type="radio" checked id="jovenes" onchange="redirectToPage()"> Joven Investigador
+                        </label>
+                </form>
+            </div>
+
+
+            
+
+                <div class="documentos">
+                    <form id="fileUploadForm">
+
+                        <div class="nombre-aspirante" >
+                            <h6>Nombre del aspirante:</h6>
+
+                                <input type="nombre" id="nombre-asistente" required>
+
+                        </div>
+            
+                        <div class="h6-classy">
+                            <h7 >Documentos a subir:</h7>
+                        
+                                               <div>
+                            <h7>* Contrato de prestación de servicios</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay')" onmouseout="hideOverlay('overlay')">
+                                <div class="overlay" id="overlay">
+                                    Formato GA-GH-F-4, Revisión No. 12 - Formato de solicitud orden y/o cotrato de prestación de servicio.
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Contrato_deprestación_de_servicios" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>* Concertación entregable</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay2')" onmouseout="hideOverlay('overlay2')">
+                                <div class="overlay" id="overlay2">
+                                    Formato IN-IV-F-26, Revisión No.4 - Concertación Entregables
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Concertación_entregable" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>* Fotocopia cédula ciudadanía</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay3')" onmouseout="hideOverlay('overlay3')">
+                                <div class="overlay" id="overlay3">
+                                    Fotocopia de Cédula de ciudadanía al 150%
+                                </div>
+                            </div>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Fotocopia_cédula" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>* Hoja de vida</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay4')" onmouseout="hideOverlay('overlay4')">
+                                <div class="overlay" id="overlay4">
+                                    Hoja de vida (tipo personal) con fotografía de 3x4 a color.
+
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Hoja_de_vida" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>Fotocopia de Libreta Militar</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay5')" onmouseout="hideOverlay('overlay5')">
+                                <div class="overlay" id="overlay5">
+                                    Fotocopia de libreta militar al 150% (cuando aplique)
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Libreta_Militar" name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>Fotocopia de Tarjeta profesional</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay6')" onmouseout="hideOverlay('overlay6')">
+                                <div class="overlay" id="overlay6">
+                                    Fotocopia de Tarjeta Profesional al 150 % (cuando aplique)
+                                    
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Tarjeta_profesional" name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Fotocopia de Diploma de grado</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay7')" onmouseout="hideOverlay('overlay7')">
+                                <div class="overlay" id="overlay7">
+                                    Fotocopia de diploma de grado o título que acredite las respectivas profesiones (en orden cronológico).
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Diploma_de_grado" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Fotocopia de acta de grado</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay8')" onmouseout="hideOverlay('overlay8')">
+                                <div class="overlay" id="overlay8">
+                                    Fotocopia de Acta de grado o título que acredite las respectivas profesiones (orden cronológico)
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="acta_de_grado" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificaciones laborales</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay9')" onmouseout="hideOverlay('overlay9')">
+                                <div class="overlay" id="overlay9">
+                                    Certificaciones laborales (Relacionando fecha de inicio y terminación en orden cronologico)
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Certificaciones_laborales" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificado de afiliación AFP
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay10')" onmouseout="hideOverlay('overlay10')">
+                                <div class="overlay" id="overlay10">
+                                    Certificación de afiliación a Fondo de Pensiones AFP (Aseguradora de fondos de pensiones) actualizado no mayor a 15 días y que su estado sea ACTIVO / COTIZANTE / MODALIDAD INDEPENDIENTE
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="afiliación_AFP" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificación de afiliación a EPS
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay11')" onmouseout="hideOverlay('overlay11')">
+                                <div class="overlay" id="overlay11">
+                                    Certifcicación de afiliación a EPS (Entidad Promotora de Salud), Actualizado, no mayor a 15 días y que su estado sea ACTIVO/COTIZANTE/MODALIDAD INDEPENDIENTE.
+                                    
+                                </div>
+                            </div>
+
+                            
+                            <div class="boton-descarga">
+                            <input type="file" id="afiliación_EPS" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>Certificación de afiliación ARL
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay12')" onmouseout="hideOverlay('overlay12')">
+                                <div class="overlay" id="overlay12">
+                                    Certificación de afiliación a ARL, actualizado no mayor a 15 días y que su estado sea ACTIVO / COTIZANTE / MODALIDAD INDEPENDIENTE (En caso de no contar con ARL la UMNG lo afiliará a AXA COLPATRIA)
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="afiliación_ARL" name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Registro único tributario (RUT)
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay13')" onmouseout="hideOverlay('overlay13')">
+                                <div class="overlay" id="overlay13">
+                                    Registro Único Tributario (RUT)actualizado no mayor a 30 días
+                                    
+                                </div>
+                            </div>
+
+
+                            <div class="boton-descarga">
+                            <input type="file" id="RUT" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Compromiso de confidencialidad
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay14')" onmouseout="hideOverlay('overlay14')">
+                                <div class="overlay" id="overlay14">
+                                    Compromiso de Confidencialidad debidamente diligenciado y firmado
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Compromiso_confidencialidad" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Examen ocupacional de ingreso
+                               </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay15')" onmouseout="hideOverlay('overlay15')">
+                                <div class="overlay" id="overlay15">
+                                    Examen ocupacional de ingreso con vigencia no mayor a 2 años. (Cuando el contrato sea mayor a 30 días)
+                                    
+                                </div>
+                            </div>
+
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Examen_ocupacional" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Formato de seguridad social
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay16')" onmouseout="hideOverlay('overlay16')">
+                                <div class="overlay" id="overlay16">
+                                    Formato de Seguridad Social debidamente diligenciado y firmado
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="seguridad_social" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificado de antecedentes procuradoría
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay17')" onmouseout="hideOverlay('overlay17')">
+                                <div class="overlay" id="overlay17">
+                                    Certificado de antecedentes de la Procuraduría General de la Nación
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="antecedentes_procuradoría" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificado de antecedentes contraloría
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay18')" onmouseout="hideOverlay('overlay18')">
+                                <div class="overlay" id="overlay18">
+                                    Certificado de antecedentes de la Contraloría General de la República
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="antecedentes_contraloría" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificado de antecedentes policía nacional
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay19')" onmouseout="hideOverlay('overlay19')">
+                                <div class="overlay" id="overlay19">
+                                    Certificado de antecedentes de la Policía Nacional
+                                    
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="boton-descarga">
+                            <input type="file" id="antecedentes_policía_nacional" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Formato de justificación
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay20')" onmouseout="hideOverlay('overlay20')">
+                                <div class="overlay" id="overlay20">
+                                    Formato de justificación debidamente diligenciado y firmado por el docente investigador
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Formato_de_justificación" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Certificado de declaración de no inhabilidades,</br> incompatibilidades y conflictos de interés
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay21')" onmouseout="hideOverlay('overlay21')">
+                                <div class="overlay" id="overlay21">
+                                    Certificado de declaración de no habilidades, incompatibilidades, y conflicto de interés.
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="declaración_no_inhabilidades" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Requisición UNIVEX</h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay22')" onmouseout="hideOverlay('overlay22')">
+                                <div class="overlay" id="overlay22">
+                                    Pantallazo de la requisición en UNIVEX
+                                </div>
+                            </div>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="UNIVEX" required name="examinar">
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Constancia del Centro de investigaciones
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay23')" onmouseout="hideOverlay('overlay23')">
+                                <div class="overlay" id="overlay23">
+                                    Oficio con la presentación escrita del postulante por parte del grupo de investigación avalada por la decanatura de la facultad correspondiente 
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Constancia_Centro_investigaciones" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Presentación escrita del postulante
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay24')" onmouseout="hideOverlay('overlay24')">
+                                <div class="overlay" id="overlay24">
+                                    Oficio por parte del Joven Investigador donde conste no haber participado en proyectos de investigación en calidad de joven investigador, asistente graduado o asistente de investigación
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="Presentación_postulante" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Constancia de no vinculación a otro proyecto
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay25')" onmouseout="hideOverlay('overlay25')">
+                                <div class="overlay" id="overlay25">
+                                    Certificado o constancia de la dirección del Centro de Investigaciones de la Facultad respectiva, avalado por la decanatura, en el que conste la participación del postulante en semilleros o proyectos de investigación durante su formación de pregrado
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="no_vinculación_otro_proyecto" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div>
+                            <h7>*Constancia de no participación previa
+                                </h7>
+
+                            <div class="icon-container">
+                                <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1111112800299917342/Frame_info.png" alt="Icon" class="icon" onmouseover="showOverlay('overlay26')" onmouseout="hideOverlay('overlay26')">
+                                <div class="overlay" id="overlay26">
+                                    Oficio por parte del Joven Investigador, donde conste no estar vinculado a otro proyecto de investigación de la Universidad Militar Nueva Granada, distinto al que lo vincula.
+                                    
+                                </div>
+                            </div>
+
+                            <a href="path/to/file.pdf" download>
+                                <img  src="https://cdn.discordapp.com/attachments/1085359913720627211/1111112616916570153/documentdownload.png" alt="Download Icon" class="icon">
+                            </a>
+
+                            <div class="boton-descarga">
+                            <input type="file" id="no_participación_previa" required name="examinar">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <a href="Homeprofesor.html">
+                            <button type:”submit” class="botonrevision"> Mandar a revisión </button>
+                        </a>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+    </main>
+
+    <footer class="Footer-archivo-jovenes">
+    
+        <div>
+            <strong>Contáctenos:</strong> <br/>
+            Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+            Teléfono: +57 3023614406 
+        </div>
+        
+        <div>
+            <a href="inicioprofesor.html" class="boton-cerrar-sesion">
+                Cerrar Sesión
+            </a>
+        </div>
+            
+    </footer>
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+            authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+            projectId: "servicio-web-base-d6fe6",
+            storageBucket: "servicio-web-base-d6fe6.appspot.com",
+            appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var currentUser; // Variable global para almacenar los datos del usuario
+
+        var email="";
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+            // User is signed in
+            var displayName = user.displayName;
+            email = user.email;
+
+            console.log("User is signed in:", displayName, email);
+            // Perform actions with the user's information
+            } else {
+            // User is signed out
+            console.log("User is signed out");
+            // Redirect the user to the login page or perform any other actions
+            }
+        });
+
+        function redirectToPage() {
+        // Get the checkbox element
+        var checkbox = document.getElementById('asistente');
+        var checkbox2 = document.getElementById('jovenes');
+
+        // Check if the checkbox is checked
+        if (checkbox.checked) {
+            // Redirect to the desired page
+            window.location.href = 'subirarchivo-asistente.html';
+        }
+
+        if (checkbox2.checked) {
+            // Redirect to the desired page
+            window.location.href = 'subirarchivo-jovenes.html';
+        }
+        }
+
+        function showOverlay(overlayid) {
+            document.getElementById(overlayid).style.display = 'block';
+            }
+
+            function hideOverlay(overlayid) {
+            document.getElementById(overlayid).style.display = 'none';
+        }
+
+        //base de datos
+
+            
+
+        function validarFormulario() {
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+
+        // Perform any necessary form processing here
+
+        // Redirect the user to a different page
+        window.location.href = 'Homeprofesor.html'; // Replace with your desired destination URL
+        return false; // Prevent form submission (optional, as the redirection will take place)
+        }
+
+        const storageRef = firebase.storage().ref();
+        const db = firebase.firestore();
+        const casesCollection = db.collection("cases");
+
+        const form = document.getElementById("fileUploadForm");
+
+        form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        const filesToUpload = [];
+
+        for (let i = 0; i < fileInputs.length; i++) {
+            const fileInput = fileInputs[i];
+            const files = fileInput.files;
+
+            for (let j = 0; j < files.length; j++) {
+            const file = files[j];
+            filesToUpload.push(file);
+            }
+        }
+
+        // Upload files and create case
+        uploadFilesAndCreateCase(filesToUpload);
+        });
+
+        function uploadFilesAndCreateCase(files) {
+        if (files.length === 0) {
+            // All files have been uploaded
+            createCase(); // Llama a la función createCase una vez que se hayan subido todos los archivos
+            return;
+        }
+
+        const file = files.shift();
+        const fileRef = storageRef.child(file.name);
+
+        fileRef
+            .put(file)
+            .then((snapshot) => {
+            console.log("File uploaded successfully!");
+            uploadFilesAndCreateCase(files); // Upload the next file
+            })
+            .catch((error) => {
+            console.error("Error uploading file:", error);
+            uploadFilesAndCreateCase(files); // Upload the next file
+            });
+        }
+
+        function createCase() {
+        const currentDate = new Date();
+        const createdDate = currentDate.toISOString();
+
+        //Nombre del aspirante
+        const textFieldValue = document.getElementById("nombre-asistente").value;
+
+        // Define the case data
+        const caseData = {
+            user: email, // Utilize the 'email' variable you obtained earlier
+            createdDate: createdDate,
+            files: [], // Array to store file objects
+            tipoContrato: "Jovenes",
+            estado: "En revisión",
+            nombreAspirante: textFieldValue, // Add the text field value to the case data
+        };
+
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+
+        // Generate promises for file uploads and store file objects in the case data
+        const fileUploadPromises = Array.from(fileInputs).map((fileInput) => {
+            const files = fileInput.files;
+            const inputId = fileInput.id; // Get the ID of the input element
+
+            return Promise.all(
+            Array.from(files).map((file) => {
+                const fileRef = storageRef.child(file.name);
+
+                return fileRef.put(file)
+                .then((snapshot) => {
+                    console.log("File uploaded successfully!");
+
+                    // Get the download URL of the uploaded file
+                    return fileRef.getDownloadURL()
+                    .then((downloadURL) => {
+                        // Store the file object in the case data
+                        caseData.files.push({
+                        inputId: inputId,
+                        name: file.name,
+                        url: downloadURL
+                        });
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error uploading file:", error);
+                });
+            })
+            );
+        });
+
+        // Wait for all file uploads to complete
+        Promise.all(fileUploadPromises)
+            .then(() => {
+            // Add the case document to Firestore
+            casesCollection
+                .add(caseData)
+                .then((docRef) => {
+                console.log("Case created with ID:", docRef.id);
+                validarFormulario(); // Proceed with form submission and redirection
+                })
+                .catch((error) => {
+                console.error("Error creating case:", error);
+                validarFormulario(); // Proceed with form submission and redirection
+                });
+            });
+        }
+    </script>
+</body>
+</html>

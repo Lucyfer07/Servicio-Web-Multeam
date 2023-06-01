@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Investigaciones SB</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+</head>
+<body>
+    <header>
+        
+        <div class="BotonesInicio">
+           
+            <a href="Profesor.html">
+                <div class="botonmoderador">
+                    <h3>Cambiar a Profesor</h3>
+                </div>
+            </a>
+           </div>
+        
+        <h1>Centro de Investigaciones S.B.</h1>
+
+        
+        
+    </header>
+
+    <main>
+       <div class="RegistroProfesor">
+            <h2>Registrate</h2>
+
+            <form id="user-data-profesor" class="formprofesor">
+                <div class="columna1">
+                    <div>
+                        <input type ="nombre" name="nombre" id="nombre" placeholder=" Nombre " required/>
+                    </div>
+                    <div>
+                        <input type ="email" name="correoelectronico" id="correoelectronico" placeholder=" Correo Electronico " required/>
+                    </div>
+                    <div>
+                        <input type ="password" name="clave" id="clave" placeholder=" Contraseña " required/>
+                    </div>
+                </div>
+                <div class="columna2">
+                    <div>
+                        <input type ="apellido" name="apellido" id="apellido" placeholder=" Apellido " required/>
+                    </div>
+                    
+                    <div>
+                        <input type ="email" name="confirmacion" id="confirmacion" placeholder=" Confirmacion Correo " required/>
+                        <span id="emailError" style="color: red; display: none;">Emails do not match.</span>
+                    </div>
+                    
+                    <div>
+                        <input type="password" id="confirmPassword" placeholder="confirma contraseña" required/>
+                        <span id="passwordError" style="color: red; display: none;">Passwords do not match.</span>
+                    </div>
+                </div>
+                    <button type:”submit” class="botonregistrate"> Registrate </button>
+            </form>
+
+        
+        </div>
+       <img src="https://cdn.discordapp.com/attachments/1007076521619492917/1109666195919081563/Rectangle_14.png" class="imagen"/>
+       <p class="texto">
+        En el Centro de Investigaciones S.B. la contratación de asistentes y jóvenes investigadores nunca ha sido tan fácil. Nuestra plataforma para docentes te permite subir tus documentos, los cuales serán revisados por nuestros moderadores; Los moderadores podrán dejar comentarios en los documentos que necesiten ser corregidos, y podrán aprobarlos o rechazarlos según sea el caso. Cuando todos los documentos sean aprobados, podrás seguir adelante con el proceso de contratación.
+       </p>
+
+    </main>
+
+    <footer>
+        <strong>Contáctenos:</strong> <br/>
+        Correo: <a href="mailto:est.carlos.gamez@unimilitar.edu.co" target="blank">est.carlos.gamez@unimilitar.edu.co</a><br/>
+        Teléfono: +57 3023614406 
+    </footer>
+
+    <script>
+        // Replace with your Firebase project configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyATXZLagp4qMpqDUx9rC01dQbrG3RnKBJ4",
+            authDomain: "servicio-web-base-d6fe6.firebaseapp.com",
+            projectId: "servicio-web-base-d6fe6",
+            storageBucket: "servicio-web-base-d6fe6.appspot.com",
+            appId: "1:292658964218:web:63dc813f0cf099baaa4b43",
+        };
+      
+        firebase.initializeApp(firebaseConfig);
+      
+        // Get the registration form element
+        const registrationForm = document.getElementById("user-data-profesor");
+      
+        // Add event listener for form submission
+        registrationForm.addEventListener("submit", (e) => {
+          e.preventDefault(); // Prevent form submission
+      
+          // Call validarFormulario to validate the form fields
+          if (validarFormulario()) {
+            // Get user email and password from the form
+            const email = document.getElementById("correoelectronico").value;
+            const password = document.getElementById("clave").value;
+      
+            // Register the user with Firebase Authentication
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // User registration successful
+                const user = userCredential.user;
+                console.log("User registered:", user);
+
+                // Set the additional user data
+                const role = "moderador";
+                const name = document.getElementById("nombre").value;
+                const lastName = document.getElementById("apellido").value;
+                const userData = {
+                role: role,
+                name: name,
+                lastName: lastName
+                // Add other fields as needed
+                };
+
+                // Set the role and additional data of the user in the database
+                firebase.firestore().collection("users").doc(user.uid).set(userData)
+                .then(() => {
+                    console.log("User role and additional data set:", userData);
+                    // Redirect the user to a different page or perform any necessary actions
+                    window.location.href = "iniciovmoderador.html"; // Replace with your desired destination URL
+                })
+                .catch((error) => {
+                    console.error("Error setting user role and additional data:", error);
+                });
+            })
+            .catch((error) => {
+                // User registration failed
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error("Error registering user:", errorCode, errorMessage);
+            });
+          }
+        });
+      
+        function validarFormulario() {
+          const email = document.getElementById("correoelectronico").value;
+          const confirmEmail = document.getElementById("confirmacion").value;
+          const password = document.getElementById("clave").value;
+          const confirmPassword = document.getElementById("confirmPassword").value;
+          const emailError = document.getElementById("emailError");
+          const passwordError = document.getElementById("passwordError");
+      
+          if (email !== confirmEmail) {
+            emailError.style.display = "inline"; // Display the email error message
+            passwordError.style.display = "none"; // Hide the password error message
+            return false; // Prevent form submission
+          } else if (password !== confirmPassword) {
+            emailError.style.display = "none"; // Hide the email error message
+            passwordError.style.display = "inline"; // Display the password error message
+            return false; // Prevent form submission
+          } else {
+            emailError.style.display = "none"; // Hide the email error message
+            passwordError.style.display = "none"; // Hide the password error message
+            return true; // Proceed with form submission
+          }
+        }
+      </script>
+</body>
+</html>
+</body>
+</html>

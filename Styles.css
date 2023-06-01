@@ -1,0 +1,737 @@
+/*Cabezas*/
+
+header{
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    padding: 10px 30px 5px 0px ;
+    justify-content: space-between;
+    height: 115px;
+}
+
+.head-index{
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 30px 10px 0px ;
+}
+
+.headinicio{
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    padding: 10px 30px 10px 0px ;
+    justify-content: flex-start;
+}
+
+.head-inicio-iniciop{
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px 0px 0px ;
+}
+
+.head-noboton{
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 30px 0px 0px ;
+}
+
+/*h´s*/
+
+h2{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    margin-bottom: 0px;
+}
+
+h3{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    margin-bottom: 0px;
+    font-size: 16px;
+    margin-top: 6px;
+    text-align: center;
+}
+
+h4{
+    color: black;
+    text-align: center;
+    font-size: 24px;
+}
+
+h5{
+    color:black;
+    font-size: 24px;
+    margin-left: 40px;
+
+}
+
+h6{
+    font-size: 24px;
+    color: #13235D;
+    margin: 0px;
+    float: left;
+    margin-right: 100px;
+
+}
+
+.h6-classy{
+    margin-top: 60px;
+    
+}
+
+h7{
+    font-size: 24px;
+    color: #13235D;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+h8{
+    color: black;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-family: 'Baloo 2', cursive;
+    float: none;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+h9{
+    color:#13235D;
+    font-size: 24px;
+    width: 650px;
+}
+
+.h9-archivos{
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 200px;
+}
+
+.Registro{
+    width: 500px;
+    height: 180px;
+    background-color: #13235D;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    float: left;
+}
+
+.Registrate{
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+p{
+    margin-top: 0px;
+}
+
+.Botones{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-items: space-around;
+    margin-top: 20px;
+    
+}
+
+.boton1{
+    width: 220px;
+    height: 40px;
+    background-color: #32499B;
+    border: 1px solid #FFFFFF;
+    float: right;
+    margin-right: 15px;
+    align-content: center;
+    justify-content: center;
+}
+
+.boton2{
+    width: 220px;
+    height: 40px;
+    background-color: #32499B;
+    border: 1px solid #FFFFFF;
+    float: right;
+    align-content: center;
+    justify-content: center;
+}
+
+.rol{
+    font-family: 'Baloo 2', cursive;
+    color: #708DF5;
+    margin-bottom: 0px;
+}
+
+
+.imagen{
+    width: 755px;
+    height: auto;
+    margin-top: 30px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.texto{
+    font-family: 'Baloo 2', cursive;
+    text-align: center;
+    margin: 20px 50px 0px 50px ;
+}
+
+footer{
+
+    background-color:  #13235D;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    margin-top: 30px ;
+    padding: 10px;
+}
+
+html{
+    margin: 0px;
+    font-family: 'Baloo 2', cursive;
+}
+
+body{
+    margin: 0px;
+}
+
+/*Profesor*/
+
+.correo{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#email{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    background-color: #13235D;
+    border: 1px solid white;
+    width: 220px;
+    height: 30px;
+    font-size: 16px;
+}
+
+#contraseña{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    background-color: #13235D;
+    border: 1px solid white;
+    width: 220px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.botoninicio{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 120px;
+    height: 20px;
+    background-color: #32499B;
+    border: 1px solid #FFFFFF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.botonmoderador{
+    width: 180px;
+    height: 30px;
+    background-color: #32499B;
+    border: 1px solid #FFFFFF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-left: 46px;
+}
+
+.BotonesInicio{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 600px;
+    margin-bottom: 20px;
+}
+
+
+
+.RegistroProfesor{
+    width: 500px;
+    height: 300px;
+    background-color: #708DF5;
+    display: flex;
+    margin-top: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+    align-items: center;
+    flex-direction: column;
+    float: left;
+}
+
+.botonregistrate{
+    width: 125px;
+    height: 30px;
+    background-color: #13235D;
+    border: 1px solid #FFFFFF;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: 'Baloo 2', cursive;
+    margin-left: 65px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.formprofesor{
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-height: 220px;
+    align-self: flex-start;
+    max-width: 100px;
+}
+
+.columna1{
+    float: left;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 15px;
+
+}
+
+.columna2{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 15px;
+}
+
+#nombre,#apellido,#correoelectronico,#clave,#confirmacion,#confirmPassword{
+    width: 220px;
+    height: 40px;
+    background-color: #99AFFF;
+    border: 1px solid #13235D;
+    font-family: 'Baloo 2', cursive;
+}
+
+/*Inicio sin registro*/
+.imagen2{
+    width: 1270px;
+    height: 450px;
+    margin-top: 40px;
+    object-fit: cover;
+    margin-left: 135px;
+}
+
+.botonregistrate5{
+    margin-left: 30px;
+}
+
+/*Inicio profesor y moderador*/
+.BotonesInicio2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tlinicio{
+    margin-left: 600px;
+}
+
+/*Inicio inicio profesor xd*/
+.boton-nuevo-contrato{
+    display: flex;
+    width: 360px;
+    height: 60px;
+    border-radius: 26px;
+    background-color: #B8C6FA;
+    color:#13235D;
+    font-size: 32px;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 40px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+
+.texto-asistente{
+    width: 465px;
+    height: auto;
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    display: flex;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 7px;
+}
+
+.columna-asistentes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 160px;
+    float:left;
+
+}
+
+.columna-jovenes{
+    display: flex;
+    flex-direction: column;
+    margin-left: 75px;
+    margin-right: 160px;
+}
+
+.columna{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*footer de todos menos el inicio*/
+.Footer-general{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Footer-archivos{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Footer-archivo-jovenes{
+    margin-top: 1850px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Footer-home{
+    margin-top: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Nuevo Contrato*/
+.boton-cerrar-sesion{
+    color:#FFFFFF;
+    margin-right: 30px;
+    font-size: 16px;
+}
+
+.cubito{
+    background-color:#B8C6FA;
+    width: 1350px;
+    height: 322px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:space-between ;
+    margin-top: 40px;
+    margin-left: 90px;
+}
+
+.tipo-contrato{
+    color:#13235D;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.checkbox{
+    color:black;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.Main-nuevo-contrato{
+    display:flex;
+    align-content: space-between;
+    height: 502px;
+}
+
+.cubito-grande{
+    background-color:#B8C6FA;
+    width: 1350px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:space-between ;
+    margin-top: 40px;
+    margin-left: 50px;
+    padding: 20px 40px;
+
+}
+
+#nombre-asistente{
+    display: flex;
+    width: 654px;
+    height: 25px;
+    border-radius: 20px;
+
+}
+
+.nombre-aspirante{
+    margin-top:20px;
+}
+
+.documentos{
+
+    color:#13235D;
+    margin-left: 60px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
+  
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: black;
+    display: none;
+    pointer-events: none;
+
+
+    width: 465px;
+    height: auto;
+    background-color: #D9D9D9;
+    border-radius: 30px;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 7px;
+    z-index: 2;
+  }
+  
+  .icon-container:hover .overlay {
+    display: block;
+  }
+
+  .icon{
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+
+  .boton-descarga{
+    float: right;
+    margin-left: 450px;
+    margin-top: 5px;
+  }
+
+
+hr{
+    border-top: 1px solid #13235D;
+}
+
+.botonrevision{
+    background-color: #13235D;
+    width: 260px;
+    height: 56px;
+    color: #FFFFFF;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 100px;
+    font-family: 'Baloo 2', cursive;
+}
+
+table {
+    width: 1300px;
+    border-collapse: collapse;
+
+
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+}
+
+th {
+    background-color: #f2f2f2;
+    background: rgba(112, 141, 245, 0.5);
+}
+
+
+
+.Jovenes-inicio{
+    display: flex;
+    width: 365px;
+    height: 72px;
+}
+
+.main-home{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px 100px;
+    justify-items: space-between;
+}
+
+.Asistente-inicio{
+    display: flex;
+    width: 365px;
+    height: 72px;
+    margin-top: 200px;
+}
+
+.cps{
+    display: flex;
+    justify-content: space-between;
+}
+
+.aprobado{
+    font-size: 20px;
+    color:black;
+    font-weight: bold;
+}
+
+.rechazado{
+    font-size: 20px;
+    color:black;
+    font-weight: bold;
+    
+}
+
+.observaciones{
+    background-color: #dddddd;
+    width: 275px;
+    height: 34px;
+    font-family: 'Baloo 2', cursive;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+}
+
+.check-ap-rech{
+    font-family: 'Baloo 2', cursive;
+    font-size: 24px;
+}
+
+/*main documentos en revision*/
+.documentos-enrevision{
+    padding: 20px 20px 20px 20px;
+
+}
+
+.lista-archivos{
+    margin-top: 30px;
+}
+
+.botoncambios{
+    width: 205px;
+    height: 50px;
+    background-color: #8DFF7A;
+    border-radius: 18px;
+    font-family: 'Baloo 2', cursive;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+fieldset {
+border: none;
+margin: 0;
+padding: 0;
+}
+
+.estado-revision {
+    background-color: yellow;
+}
+
+.estado-aprobado {
+    background-color: green;
+    color: white;
+}
+
+.estado-rechazado {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.upload-icon {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .upload-icon i {
+    color: #333;
+  }
+  
+  /* Estilo adicional opcional para resaltar el botón al pasar el cursor */
+  .upload-icon:hover i {
+    color: #007bff;
+  }
+
+  .botoncambios{
+    padding: 5px;
+    font-family: 'Baloo 2', cursive;
+    margin-top: 50px;
+  }
+  .observaciones{
+    color: black;
+  }
